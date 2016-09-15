@@ -7,3 +7,12 @@ G:\Codes\计算器实验\计算器实验\obj\Debug\计算器实验.csproj.Genera
 G:\Codes\计算器实验\计算器实验\obj\Debug\计算器实验.exe
 G:\Codes\计算器实验\计算器实验\obj\Debug\计算器实验.pdb
 G:\Codes\计算器实验\计算器实验\obj\Debug\计算器实验.计算器.resources
+G:\Codes\.NET\计算器实验\计算器实验\bin\Debug\计算器实验.exe.config
+G:\Codes\.NET\计算器实验\计算器实验\obj\Debug\计算器实验.exe
+G:\Codes\.NET\计算器实验\计算器实验\obj\Debug\计算器实验.pdb
+G:\Codes\.NET\计算器实验\计算器实验\obj\Debug\计算器实验.csprojResolveAssemblyReference.cache
+G:\Codes\.NET\计算器实验\计算器实验\obj\Debug\计算器实验.Properties.Resources.resources
+G:\Codes\.NET\计算器实验\计算器实验\obj\Debug\计算器实验.计算器.resources
+G:\Codes\.NET\计算器实验\计算器实验\obj\Debug\计算器实验.csproj.GenerateResource.Cache
+G:\Codes\.NET\计算器实验\计算器实验\bin\Debug\计算器实验.exe
+G:\Codes\.NET\计算器实验\计算器实验\bin\Debug\计算器实验.pdb

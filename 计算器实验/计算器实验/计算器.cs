@@ -13,9 +13,17 @@ namespace 计算器实验
 {
     public partial class 计算器 : Form
     {
+
+        //-1 空 0 一个0 1 整数 2 小数 3 左括号 4 右括号
+        int status;
+        int leftSum;
+        int rightSum;
+
         public 计算器()
         {
             InitializeComponent();
+            status = -1;
+            leftSum = rightSum = 0;
         }
 
         private void 计算器_Load(object sender, EventArgs e)
@@ -25,26 +33,77 @@ namespace 计算器实验
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addNum(1, btn.Text);
+
+            //InputTextBox.Text += btn.Text;
+        }
+
+        private void addNum(int v, string text)
+        {
+            //throw new NotImplementedException();
+
+            switch (status){
+                case -1:
+                    InputTextBox.Text += text;
+                    if (v == 0) status = 0;
+                    else status = 1;
+                    
+                    break;
+                case 0:
+                    if (v != 0)
+                    {
+                        InputTextBox.Text = InputTextBox.Text.Substring(0, InputTextBox.Text.Length-1);
+                        InputTextBox.Text += text;
+                        status = 1;
+                    }
+                    break;
+                case 1:
+                    InputTextBox.Text += text;
+                    status = 1;
+                    break;
+                case 2:
+                    InputTextBox.Text += text;
+                    status = 2;
+                    break;
+                case 3:
+                    InputTextBox.Text += text;
+                    if (v == 0) status = 0;
+                    else status = 1;
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    InputTextBox.Text += text;
+                    if (v == 0) status = 0;
+                    else status = 1;
+                    break;
+            }
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            //InputTextBox.Text += btn.Text;
+            addOp(btn.Text);
         }
 
         private void button18_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            if (status == -1 || status == 3) return;
+            if (leftSum - rightSum >= 1)
+            {
+                Button btn = (Button)sender;
+                InputTextBox.Text += btn.Text;
+                rightSum++;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addNum(2, btn.Text);
         }
 
         private void EqurBtn_Click(object sender, EventArgs e)
@@ -269,83 +328,96 @@ namespace 计算器实验
         private void button3_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addNum(3, btn.Text);
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addOp(btn.Text);
+
+            //InputTextBox.Text += btn.Text;
+        }
+
+        private void addOp(string text)
+        {
+            //throw new NotImplementedException();
+            if (status == -1 || status == 3 || status == 5) return;
+            InputTextBox.Text += text;
+            status = 5;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addNum(4, btn.Text);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addNum(5, btn.Text);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addNum(6, btn.Text);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addNum(7, btn.Text);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addNum(8, btn.Text);
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addNum(9, btn.Text);
         }
 
         private void MulBtn_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addOp(btn.Text);
         }
 
         private void button0_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (InputTextBox.Text == "") return;
-            int len = getNumOfLen(InputTextBox.Text);
-            string s = InputTextBox.Text.Substring(0, len);
-            if (s == "0") return;
-            InputTextBox.Text += btn.Text;
+            addNum(0, btn.Text);
         }
 
         private void PointBtn_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            if (status == 0 || status == 1)
+            {
+                Button btn = (Button)sender;
+                InputTextBox.Text += btn.Text;
+                status = 2;
+            }
         }
 
         private void DivBtn_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            InputTextBox.Text += btn.Text;
+            addOp(btn.Text);
         }
 
         private void LeftBrackets_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
+            if (status == 0 || status == 1 || status == 2) return;
             InputTextBox.Text += btn.Text;
+            status = 3;
+            leftSum++;
         }
 
         private void BreakOneBtn_Click(object sender, EventArgs e)
